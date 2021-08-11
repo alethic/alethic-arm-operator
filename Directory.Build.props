@@ -1,0 +1,10 @@
+<Project>
+    <PropertyGroup>
+        <Company>Alethic Solutions</Company>
+        <ProductName>Kubernetes Azure Resource Manager Operator</ProductName>
+        <LangVersion>9.0</LangVersion>
+        <UserSecretsId>4163E9DD-3480-43B6-BAF9-7D1A797B18B9</UserSecretsId>
+        <IncludeDefaultAppSettings>true</IncludeDefaultAppSettings>
+        <AppendRuntimeIdentifierToOutputPath>true</AppendRuntimeIdentifierToOutputPath>
+    </PropertyGroup>
+</Project>

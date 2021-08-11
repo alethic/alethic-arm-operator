@@ -1,0 +1,25 @@
+<Project>
+    <ItemGroup Condition=" '$(IncludeDefaultAppSettings)' == 'true' and '$(OutputType)' == 'Exe' ">
+        <Content Include="$(MSBuildThisFileDirectory)appsettings.default.json" Condition="Exists('$(MSBuildThisFileDirectory)appsettings.default.json')">
+            <Link>appsettings.default.json</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+        <Content Include="$(MSBuildThisFileDirectory)appsettings.default.local.json" Condition="Exists('$(MSBuildThisFileDirectory)appsettings.default.local.json')">
+            <Link>appsettings.default.local.json</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+        </Content>
+    </ItemGroup>
+
+    <Target Name="SetAllProjectReferenceAsPublic" AfterTargets="AssignProjectConfiguration" BeforeTargets="ResolveProjectReferences" Condition="'$(OutputType)' == 'Library' and '$(CopyLocalLockFileAssemblies)' != 'true' and $(AssemblyName.EndsWith('Tests')) == 'false' ">
+        <ItemGroup>
+            <ProjectReferenceWithConfiguration Update="@(ProjectReferenceWithConfiguration)">
+                <Private>false</Private>
+            </ProjectReferenceWithConfiguration>
+            <ProjectReference Update="@(ProjectReference)">
+                <Private>false</Private>
+            </ProjectReference>
+        </ItemGroup>
+    </Target>
+</Project>

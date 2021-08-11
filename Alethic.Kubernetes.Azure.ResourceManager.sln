@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1A47A211-62C1-4AD1-838A-C2339DC04BC0}"
+	ProjectSection(SolutionItems) = preProject
+		.artifactignore = .artifactignore
+		.dockerignore = .dockerignore
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		Alethic.Kubernetes.Azure.ResourceManager.artifacts.proj = Alethic.Kubernetes.Azure.ResourceManager.artifacts.proj
+		appsettings.default.json = appsettings.default.json
+		appsettings.default.local.json = appsettings.default.local.json
+		appsettings.default.local.tmpl.json = appsettings.default.local.tmpl.json
+		build.ps1 = build.ps1
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		NuGet.config = NuGet.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure-pipelines", "azure-pipelines", "{5508D57A-7A4A-4B48-AEDA-47B005408F20}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines\_.yml = azure-pipelines\_.yml
+		azure-pipelines\deploy.yml = azure-pipelines\deploy.yml
+	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{ACD8DB9B-9C43-44F7-BC40-8005E0D30798}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "charts", "charts", "{D55AE8B9-48A1-4462-B077-5C84366A798F}"
+EndProject
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "alethic-arm-operator", "charts\alethic-arm-operator\alethic-arm-operator.msbuildproj", "{E058D604-B186-4980-A176-24351CA50FDD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet", "dotnet", "{34A7D697-D75E-460E-909B-F970934F2683}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alethic.Kubernetes.Azure.ResourceManager.Operator", "dotnet\Alethic.Kubernetes.Azure.ResourceManager.Operator\Alethic.Kubernetes.Azure.ResourceManager.Operator.csproj", "{A73D545F-0AE4-403D-A415-BB254F68CF7C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACD8DB9B-9C43-44F7-BC40-8005E0D30798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACD8DB9B-9C43-44F7-BC40-8005E0D30798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACD8DB9B-9C43-44F7-BC40-8005E0D30798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACD8DB9B-9C43-44F7-BC40-8005E0D30798}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E058D604-B186-4980-A176-24351CA50FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E058D604-B186-4980-A176-24351CA50FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E058D604-B186-4980-A176-24351CA50FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E058D604-B186-4980-A176-24351CA50FDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A73D545F-0AE4-403D-A415-BB254F68CF7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A73D545F-0AE4-403D-A415-BB254F68CF7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A73D545F-0AE4-403D-A415-BB254F68CF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A73D545F-0AE4-403D-A415-BB254F68CF7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E058D604-B186-4980-A176-24351CA50FDD} = {D55AE8B9-48A1-4462-B077-5C84366A798F}
+		{A73D545F-0AE4-403D-A415-BB254F68CF7C} = {34A7D697-D75E-460E-909B-F970934F2683}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16D1CA47-394E-446C-A1FB-DF81EFE35BA3}
+	EndGlobalSection
+EndGlobal

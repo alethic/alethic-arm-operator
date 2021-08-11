@@ -1,0 +1,28 @@
+<Project DefaultTargets="Publish">
+    <PropertyGroup>
+        <ArtifactStagingDirectory Condition="'$(ArtifactStagingDirectory)' == ''">$(BUILDDIR)</ArtifactStagingDirectory>
+        <ArtifactStagingDirectory Condition="'$(ArtifactStagingDirectory)' == ''">$(BUILD_ARTIFACTSTAGINGDIRECTORY)</ArtifactStagingDirectory>
+        <ArtifactStagingDirectory Condition="'$(ArtifactStagingDirectory)' == ''">$([System.IO.Path]::Combine('$(MSBuildThisFileDirectory)', 'build'))</ArtifactStagingDirectory>
+        <ArtifactStagingDirectory>$([System.IO.Path]::GetFullPath('$(ArtifactStagingDirectory)'))</ArtifactStagingDirectory>
+        <SolutionFile>$([System.IO.Path]::Combine('$(MSBuildThisFileDirectory)', 'Accutraq.sln'))</SolutionFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- stage docker build output -->
+        <TargetsForPublish Include="$(SolutionFile)">
+            <Targets>Alethic_Kubernetes_Azure_ResourceManager_Operator:Publish</Targets>
+            <Properties>PublishDir=$([System.IO.Path]::Combine('$(ArtifactStagingDirectory)', 'docker', 'tmp', 'Alethic.Kubernetes.Azure.ResourceManager.Operator'));TargetFramework=net5.0;RuntimeIdentifier=linux-x64</Properties>
+        </TargetsForPublish>
+    </ItemGroup>
+
+    <Target Name="Publish">
+        <ItemGroup>
+            <_TargetsForPublish Include="@(TargetsForPublish)">
+                <Properties>%(Properties);BuildInParallel=false</Properties>
+            </_TargetsForPublish>
+        </ItemGroup>
+
+        <MSBuild BuildInParallel="false" ContinueOnError="false" Projects="@(TargetsForPublish)" Targets="%(TargetsForPublish.Targets)" />
+    </Target>
+
+</Project>

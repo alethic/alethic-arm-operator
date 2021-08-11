@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  alethic-arm-operator:
+    image: alethic-arm/operator:${VERSION}
+    platform: linux
+    build:
+      context:  ${BUILDDIR}/docker/tmp/Alethic.Kubernetes.Azure.ResourceManager.Operator
+      dockerfile: ${ROOTDIR}/src/Alethic.Kubernetes.Azure.ResourceManager.Operator/Dockerfile
+      labels:
+        artifact: alethic-arm-operator
+      args:
+        source: .

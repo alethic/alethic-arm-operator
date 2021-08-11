@@ -1,0 +1,6 @@
+apiVersion: v2
+name: alethic-arm-operator
+description: A Kubernetes operator that manages Azure Resource Manager deployments.
+type: application
+version: 0.0.0
+appVersion: "0.0.0"

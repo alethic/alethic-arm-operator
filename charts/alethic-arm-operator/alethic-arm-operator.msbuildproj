@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.Build.NoTargets/3.0.4">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include=".helmignore" />
+    <None Include="Chart.yaml" />
+    <None Include="templates\_helpers.tpl" />
+    <None Include="values.yaml" />
+  </ItemGroup>
+</Project>

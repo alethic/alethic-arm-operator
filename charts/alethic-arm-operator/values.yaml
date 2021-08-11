@@ -1,0 +1,10 @@
+nameOverride: ""
+fullnameOverride: ""
+
+images:
+  pullSecrets: []
+  pullPolicy: IfNotPresent
+  registry:
+  operator:
+    repository: alethic-arm/operator
+
