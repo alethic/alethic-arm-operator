@@ -1,0 +1,98 @@
+trigger:
+  branches:
+    include:
+    - release
+    - develop
+  paths:
+    exclude:
+    - README.md
+    - .gitignore
+
+variables:
+  BuildPlatform: 'Any CPU'
+  BuildConfiguration: 'Release'
+  NUGET_PACKAGES: $(Pipeline.Workspace)/.nuget/packages
+  NPM_CONFIG_CACHE: $(Pipeline.Workspace)/.npm
+
+stages:
+- stage: build
+  displayName: Build
+  jobs:
+  - job: build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-20.04'
+    workspace:
+      clean: all
+    steps:
+
+    - task: gitversion/setup@0
+      displayName: Install GitTools
+      inputs:
+        versionSpec: '5.x'
+
+    - task: gitversion/execute@0
+      displayName: Calculate Version
+
+    - pwsh: Write-Host "##vso[build.updatebuildnumber]$(GitVersion.FullSemVer)"
+      displayName: Set Build Number
+
+    - task: UseDotNet@2
+      displayName: Update DotNet
+      inputs:
+        version: '5.0.201'
+        packageType: sdk
+  
+    - task: DotNetCoreCLI@2
+      displayName: Restore DotNet Packages
+      inputs:
+        command: restore
+        selectOrConfig: config
+        nugetConfigPath: NuGet.config
+        projects: $(Build.SourcesDirectory)/Alethic.Kubernetes.Azure.ResourceManager.sln
+  
+    - task: PowerShell@2
+      displayName: Build (dotnet)
+      inputs:
+        pwsh: true
+        targetType: filePath
+        filePath: build.ps1
+        arguments: >
+          -Configuration "$(BuildConfiguration)"
+          -Platform "$(BuildPlatform)"
+          -Version "$(GitVersion.FullSemVer)"
+          -FileVersion "$(GitVersion.AssemblySemFileVer)"
+          -FullFileVersion "$(GitVersion.InformationalVersion)"
+          -Stage "dotnet"
+  
+    - task: PowerShell@2
+      displayName: Build (docker)
+      inputs:
+        pwsh: true
+        targetType: filePath
+        filePath: build.ps1
+        arguments: >
+          -Configuration "$(BuildConfiguration)"
+          -Platform "$(BuildPlatform)"
+          -Version "$(GitVersion.FullSemVer)"
+          -FileVersion "$(GitVersion.AssemblySemFileVer)"
+          -FullFileVersion "$(GitVersion.InformationalVersion)"
+          -Stage "docker"
+  
+    - task: PowerShell@2
+      displayName: Build (charts)
+      inputs:
+        pwsh: true
+        targetType: filePath
+        filePath: build.ps1
+        arguments: >
+          -Configuration "$(BuildConfiguration)"
+          -Platform "$(BuildPlatform)"
+          -Version "$(GitVersion.FullSemVer)"
+          -FileVersion "$(GitVersion.AssemblySemFileVer)"
+          -FullFileVersion "$(GitVersion.InformationalVersion)"
+          -Stage "charts"
+
+    - publish: $(Build.SourcesDirectory)
+      displayName: Publish Artifacts
+      artifact: artifacts

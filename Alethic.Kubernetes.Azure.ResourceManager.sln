@@ -22,7 +22,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure-pipelines", "azure-pipelines", "{5508D57A-7A4A-4B48-AEDA-47B005408F20}"
 	ProjectSection(SolutionItems) = preProject
 		azure-pipelines\_.yml = azure-pipelines\_.yml
-		azure-pipelines\deploy.yml = azure-pipelines\deploy.yml
 	EndProjectSection
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{ACD8DB9B-9C43-44F7-BC40-8005E0D30798}"

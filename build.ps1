@@ -5,7 +5,7 @@ param(
     [string]$FullVersion = '0.0.0.0',
     [string]$FileVersion = '0.0.0.0',
 
-    [ValidateSet('all', 'dotnet', 'docker', 'helm')]
+    [ValidateSet('all', 'dotnet', 'docker', 'charts')]
     [string]$Stage = 'all'
 )
 
@@ -80,6 +80,6 @@ if ($Stage -eq 'all' -or $Stage -eq 'docker') {
     Write-Progress -Activity "Exporting" -Completed
 }
 
-if ($Stage -eq 'all' -or $Stage -eq 'helm') {
+if ($Stage -eq 'all' -or $Stage -eq 'charts') {
     helm package $(Join-Path $PSScriptRoot "charts" "alethic-arm-operator") --version $Version --app-version $FullVersion -u -d $(Join-Path $env:BUILDDIR "charts")
 }
